@@ -22,7 +22,7 @@ class PatientForm(forms.ModelForm):
 class SendMail(forms.Form):
 #    To = forms.EmailField(max_length=100, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     Subject = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    Message = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+    Message = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 15}))
 
     class Media:
         js = ('/site_media/static/tiny_mce/tinymce.min.js',)

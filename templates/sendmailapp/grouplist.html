@@ -8,9 +8,14 @@
             <br>
     {% for group in object_list %}
     <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold"><a href="{{ group.get_absolute_url }} ">{{ group.name }}</a></span> &middot;
-            </div>
+
+        <div class="card-body">
+            <span class="font-weight-bold"><a href="{{ group.get_absolute_url }} ">{{ group.name }}</a></span>
+        </div>
+        <div class="card-footer">
+
+            <button type="button" class="btn btn-dark"><a href ="{% url 'sendgroupemail' group.pk %}">Send Mail</a></button>
+        </div>
     </div>
     {% endfor %}
 {% endblock content %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'import_export',
     'tinymce',
+    'django_celery_results',
 
 
     'sendmailapp.apps.SendmailappConfig',
@@ -177,3 +178,6 @@ TINYMCE_EXTRA_MEDIA = {
         ...
     ],
 }
+
+DJANGO_CELERY_RESULTS_TASK_ID_MAX_LENGTH=191
+

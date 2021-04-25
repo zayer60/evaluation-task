@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, DetailView, ListView, FormView
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .form import PatientForm, SendMail
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from tablib import Dataset
 from .resources import PatientResource
 from .tasks import send_review_email_task
@@ -112,8 +112,8 @@ def sendemail(request,id):
             try:
                 send_review_email_task.delay(
                     form.cleaned_data['Subject'],'hello there',form.cleaned_data['Message'] , to)
-
-                return HttpResponse('success')
+                return HttpResponseRedirect(reverse('group-list'))
+                #return HttpResponse('success')
             except BadHeaderError:
                 return HttpResponse('invalid header found')
     return render(request, 'sendmailapp/form.html', {'form': form})
@@ -132,5 +132,6 @@ def groupemail(request,id):
                 print(to)
                 send_review_email_task.delay(
                     form.cleaned_data['Subject'],'hello there', form.cleaned_data['Message'], to)
-                return HttpResponse('success')
+                return HttpResponseRedirect(reverse('group-list'))
+                #return HttpResponse('success')
     return render(request, 'sendmailapp/form.html', {'form': form})
