@@ -7,6 +7,8 @@ from .form import PatientForm, SendMail
 from django.http import HttpResponse
 from tablib import Dataset
 from .resources import PatientResource
+from .tasks import send_review_email_task
+from django.core.mail import send_mail, BadHeaderError
 
 class GroupListView(ListView):
     model = Group
@@ -94,7 +96,41 @@ def simple_upload(request):
     return render(request, 'sendmailapp/index.html')
 
 
-
+'''
 class ContactView(FormView):
     template_name = 'sendmailapp/form.html'
     form_class = SendMail
+'''
+def sendemail(request,id):
+    form = SendMail()
+    if request.method== 'POST':
+        form = SendMail(request.POST)
+        if form.is_valid():
+            patient = Patient.objects.get(pk=id)
+            to = [patient.email]
+            print(to)
+            try:
+                send_review_email_task.delay(
+                    form.cleaned_data['Subject'],'hello there',form.cleaned_data['Message'] , to)
+
+                return HttpResponse('success')
+            except BadHeaderError:
+                return HttpResponse('invalid header found')
+    return render(request, 'sendmailapp/form.html', {'form': form})
+
+
+
+def groupemail(request,id):
+    group = Group.objects.get(pk=id)
+    patients = group.patient_set.all()
+    to = [patient.email for patient in patients]
+    print(to)
+    form = SendMail()
+    if request.method=='POST':
+        form = SendMail(request.POST)
+        if form.is_valid():
+                print(to)
+                send_review_email_task.delay(
+                    form.cleaned_data['Subject'],'hello there', form.cleaned_data['Message'], to)
+                return HttpResponse('success')
+    return render(request, 'sendmailapp/form.html', {'form': form})
