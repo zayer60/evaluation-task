@@ -48,3 +48,12 @@ class DeletePatient( DeleteView):
     model = Patient
     template_name = 'sendmailapp/patient-delete.html'
     success_url = reverse_lazy('patient-list')
+
+class SearchPatient(ListView):
+    model = Patient
+    context_object_name = 'patient_list'
+    template_name = 'sendmailapp/search-patient.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Patient.objects.filter(name__icontains=query)

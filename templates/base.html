@@ -14,7 +14,7 @@
                 <a href="{% url 'group-list' %}" class="navbar-brand my-0 mr-md-auto
                 font-weight-normal">Message Service</a>
                 <nav class="navbar navbar-dark default-color">
-                    <form class="form-inline my-2 my-lg-0 ml-auto " action="#" method="get">
+                    <form class="form-inline my-2 my-lg-0 ml-auto " action="{% url 'search_results' %}" method="get">
                       <input name ="q" class="form-control mr-sm-2" type="text" placeholder="Search by patients name" aria-label="Search">
                     </form>
                     <a class="p-2 text-dark" href="{% url 'patient-list' %}">Patients</a>
