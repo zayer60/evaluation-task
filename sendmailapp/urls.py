@@ -14,5 +14,6 @@ urlpatterns = [
     path('search/', SearchPatient.as_view(), name='search_results'),
     path('export/', export,name='export'),
     path('upload/', simple_upload,name='uplaod'),
+    path('send/',ContactView.as_view(), name='send-email'),
 
 ]

@@ -1,5 +1,6 @@
 from django import forms
 from .models import Patient,Group
+from tinymce.widgets import TinyMCE
 
 #from .tasks import send_review_email_task
 
@@ -16,3 +17,12 @@ class PatientForm(forms.ModelForm):
             'email':forms.EmailInput(attrs={'class':'form-control'}),
             'groups':forms.CheckboxSelectMultiple(attrs={'class':'form-check-label'})
         }
+
+
+class SendMail(forms.Form):
+#    To = forms.EmailField(max_length=100, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    Subject = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    Message = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+
+    class Media:
+        js = ('/site_media/static/tiny_mce/tinymce.min.js',)

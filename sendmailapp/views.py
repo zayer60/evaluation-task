@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, DetailView, ListView, FormView
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .form import PatientForm
+from .form import PatientForm, SendMail
 from django.http import HttpResponse
 from tablib import Dataset
 from .resources import PatientResource
@@ -92,3 +92,9 @@ def simple_upload(request):
         #    person_resource.import_data(dataset, dry_run=False)  # Actually import now
 
     return render(request, 'sendmailapp/index.html')
+
+
+
+class ContactView(FormView):
+    template_name = 'sendmailapp/form.html'
+    form_class = SendMail
