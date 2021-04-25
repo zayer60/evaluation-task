@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Groupdetail{% endblock title %}
+
+{% block content %}
+    <div class="flex-box-row">
+        <h3>{{ group }}</h3>
+
+        {% if patients %}
+            <table class="table table-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.gender }}</td>
+                    <td>{{ patient.email }}</td>
+                    <td>{{ patient.dob|date:'M.d,Y' }}</td>
+                    <td><a href="{% url 'update-patient' patient.pk %}">Edit</a>
+                        <a href="{% url 'delete-patient' patient.pk %}">Delete</a>
+                        <a href="{% url 'sendemail' patient.pk %}">Send Mail</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        {% endif %}
+        <br />
+        <div>
+            <a href="{% url 'group-update' group.pk %}">Edit</a>||
+            <a href="{% url 'group-delete' group.pk %}">Delete</a>
+        </div>
+    </div>
+
+{% endblock content %}
