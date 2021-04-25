@@ -12,5 +12,7 @@ urlpatterns = [
     path('patient/<int:pk>/edit/', UpdatePatient.as_view(), name='update-patient'),
     path('patient/<int:pk>/delete', DeletePatient.as_view(), name='delete-patient'),
     path('search/', SearchPatient.as_view(), name='search_results'),
+    path('export/', export,name='export'),
+    path('upload/', simple_upload,name='uplaod'),
 
 ]

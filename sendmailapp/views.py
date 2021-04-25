@@ -4,6 +4,9 @@ from django.views.generic import TemplateView, DetailView, ListView, FormView
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .form import PatientForm
+from django.http import HttpResponse
+from tablib import Dataset
+from .resources import PatientResource
 
 class GroupListView(ListView):
     model = Group
@@ -57,3 +60,35 @@ class SearchPatient(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Patient.objects.filter(name__icontains=query)
+
+def export(request):
+    patient_resource = PatientResource()
+    dataset = patient_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="persons.xls"'
+    return response
+
+
+def simple_upload(request):
+    if request.method == 'POST':
+        patient_resource = PatientResource()
+        dataset = Dataset()
+        new_patients = request.FILES['myfile']
+
+        imported_data = dataset.load(new_patients.read(), format='xlsx')
+        # print(imported_data)
+        for data in imported_data:
+            print(data[1])
+            value = PatientGroup(
+                data[0],
+                data[1],
+                data[2],
+            )
+            value.save()
+
+            # result = patient_resource.import_data(dataset, dry_run=True)  # Test the data import
+
+        # if not result.has_errors():
+        #    person_resource.import_data(dataset, dry_run=False)  # Actually import now
+
+    return render(request, 'sendmailapp/index.html')
