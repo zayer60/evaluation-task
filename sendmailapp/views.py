@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, DetailView, ListView, FormView
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .form import PatientForm
 
 class GroupListView(ListView):
     model = Group
@@ -25,25 +26,25 @@ class UpdateGroup( UpdateView):
 
 class DeleteGroup( DeleteView):
     model = Group
-    template_name = 'exceldemo/group-delete.html'
+    template_name = 'sendmailapp/group-delete.html'
     success_url = reverse_lazy('group-list')
 
 class PatientListView(ListView):
     model = Patient
-    template_name = 'exceldemo/patientlist.html'
+    template_name = 'sendmailapp/patientlist.html'
 
 class CreatePatient( CreateView):
     model = Patient
     form_class = PatientForm
-    template_name = 'exceldemo/patient-create.html'
+    template_name = 'sendmailapp/patient-create.html'
 
 class UpdatePatient( UpdateView):
     model = Patient
     form_class = PatientForm
-    template_name = 'exceldemo/patient-update-form.html'
+    template_name = 'sendmailapp/patient-update-form.html'
 
 
 class DeletePatient( DeleteView):
     model = Patient
-    template_name = 'exceldemo/patient-delete.html'
+    template_name = 'sendmailapp/patient-delete.html'
     success_url = reverse_lazy('patient-list')

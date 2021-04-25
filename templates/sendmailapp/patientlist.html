@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex-box-row">
+    <button type="button" class="btn btn-dark"><a href ="{% url 'create-patient' %}">Add New Patient</a></button>
+        <br>
+        <br>
+     <table class="table table-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Groups</th>
+                    <th>Actions</th>
+                </tr>
+                {% for patients in object_list %}
+                <tr>
+                    <td>{{ patients.name }}</td>
+                    <td>{{ patients.gender }}</td>
+                    <td>{{ patients.dob|date:'M.d,Y' }}</td>
+                    <td>
+                        {%  for group in patients.groups.all %}
+                       <span> {{ group.name }} </span>
+                        {% endfor %}
+                    </td>
+
+
+                    <td><a href="{% url 'update-patient' patients.pk %}">Edit</a>
+                        <a href="{% url 'delete-patient' patients.pk %}">Delete</a>
+                    </td>
+                </tr>
+
+{% endfor %}
+     </table>
+</div>
+{% endblock content %}

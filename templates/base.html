@@ -17,8 +17,8 @@
                     <form class="form-inline my-2 my-lg-0 ml-auto " action="#" method="get">
                       <input name ="q" class="form-control mr-sm-2" type="text" placeholder="Search by patients name" aria-label="Search">
                     </form>
-                    <a class="p-2 text-dark" href="#">Patients</a>
-                    <a class="p-2 text-dark" href="#">Add Patient</a>
+                    <a class="p-2 text-dark" href="{% url 'patient-list' %}">Patients</a>
+                    <a class="p-2 text-dark" href="{% url 'create-patient' %}">Add Patient</a>
                     <a class="p-2 text-dark" href="#">Add Patient To The Groups</a>
                 </nav>
             </div>
