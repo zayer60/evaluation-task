@@ -23,6 +23,26 @@ class UpdateGroup( UpdateView):
     fields = ('name',)
     template_name = 'sendmailapp/group-update-form.html'
 
+class DeleteGroup( DeleteView):
+    model = Group
+    template_name = 'exceldemo/group-delete.html'
+    success_url = reverse_lazy('group-list')
+
+class PatientListView(ListView):
+    model = Patient
+    template_name = 'exceldemo/patientlist.html'
+
+class CreatePatient( CreateView):
+    model = Patient
+    form_class = PatientForm
+    template_name = 'exceldemo/patient-create.html'
+
+class UpdatePatient( UpdateView):
+    model = Patient
+    form_class = PatientForm
+    template_name = 'exceldemo/patient-update-form.html'
+
+
 class DeletePatient( DeleteView):
     model = Patient
     template_name = 'exceldemo/patient-delete.html'
