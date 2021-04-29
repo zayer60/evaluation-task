@@ -18,6 +18,15 @@ class PatientForm(forms.ModelForm):
             'groups':forms.CheckboxSelectMultiple(attrs={'class':'form-check-label'})
         }
 
+class GroupForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = ('name',)
+        widgets ={
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
 
 class SendMail(forms.Form):
 #    To = forms.EmailField(max_length=100, widget=forms.EmailInput(attrs={'class': 'form-control'}))

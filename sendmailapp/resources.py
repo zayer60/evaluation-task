@@ -1,7 +1,8 @@
 from import_export import resources, fields, widgets
-from .models import PatientGroup
+from .models import PatientGroup,Patient
 
 
 class PatientResource(resources.ModelResource):
     class Meta:
-        model = PatientGroup
+        model = Patient
+        fields = ('name','gender','dob','email','groups')

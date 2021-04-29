@@ -1,8 +1,17 @@
-{% extends 'base.html' %}
-{% block title %}Search{% endblock title %}
+{% extends 'index.html' %}
+{% block title %}Groups{% endblock title %}
 {% block content %}
-    <h1>Search Results</h1>
-{% for patient in patient_list %}
+<section class="wrapper">
+<!--overview start-->
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-laptop"></i>Search Results</h3>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-home"></i><a href="{% url 'group-list' %}">Home</a></li>
+        </ol>
+      </div>
+    </div>
+    {% for patient in patient_list %}
     <div>
         <h3><a href="{{ patient.get_absolute_url }}">{{ patient.name }}</a></h3>
         <p>Gender: {{ patient.gender }}</p>
@@ -15,4 +24,10 @@
         </p>
     </div>
 {% endfor %}
+</section>
 {% endblock content %}
+
+
+
+
+

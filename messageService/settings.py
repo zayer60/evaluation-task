@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'import_export',
     'tinymce',
     'django_celery_results',
+    'django_filters',
 
 
     'sendmailapp.apps.SendmailappConfig',
@@ -133,6 +134,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+"django.contrib.staticfiles.finders.FileSystemFinder",
+"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -140,14 +147,14 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = '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'
-DEFAULT_FROM_EMAIL = 'zayerwali@gmail.com'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+DEFAULT_FROM_EMAIL = 'abizawali3@gmail.com'
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 
 
 
-TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/tinymce/tinymce.min.js")
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "tinymce/js/tinymce/tinymce.min.js")
 TINYMCE_COMPRESSOR = False
 
 
@@ -179,5 +186,4 @@ TINYMCE_EXTRA_MEDIA = {
     ],
 }
 
-DJANGO_CELERY_RESULTS_TASK_ID_MAX_LENGTH=191
 
