@@ -17,5 +17,6 @@ urlpatterns = [
     #path('send/',ContactView.as_view(), name='send-email'),
     path('send/<int:id>/',sendemail,name='sendemail'),
     path('sendgroup/<int:id>',groupemail,name= 'sendgroupemail'),
+    #path('uploadcsv/',simplyupload,name ='uploadexcel'),
 
 ]

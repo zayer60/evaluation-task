@@ -6,4 +6,4 @@ from django import forms
 class PatientFilter(FilterSet):
     class Meta:
         model = Patient
-        fields = ('groups',)
+        fields =('groups',)

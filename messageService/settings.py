@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'tinymce',
     'django_celery_results',
     'django_filters',
+    "django_select2",
+    'bootstrap_datepicker_plus',
+    'bootstrap4',
+    'bootstrap_modal_forms',
 
 
     'sendmailapp.apps.SendmailappConfig',
@@ -185,5 +189,28 @@ TINYMCE_EXTRA_MEDIA = {
         ...
     ],
 }
+CELERY_RESULT_BACKEND = 'django-db'
+
+
+
+CACHES = {
+    # … default cache config and others
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    "select2": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+SELECT2_CACHE_BACKEND = "select2"
+
 
 

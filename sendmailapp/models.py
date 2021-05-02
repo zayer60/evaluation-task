@@ -26,7 +26,7 @@ class Patient(models.Model):
     groups = models.ManyToManyField(Group,through='PatientGroup',blank=True)
 
     def __str__(self):
-        return self.groups
+        return self.name
 
     def get_absolute_url(self):
        return reverse('patient-list')

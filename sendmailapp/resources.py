@@ -5,4 +5,3 @@ from .models import PatientGroup,Patient
 class PatientResource(resources.ModelResource):
     class Meta:
         model = Patient
-        fields = ('name','gender','dob','email','groups')
