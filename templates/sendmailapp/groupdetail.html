@@ -18,7 +18,7 @@
 
                 {% if patients %}
                     <table class="table table-striped table-advance table-hover">
-                                <tbody>
+                                <thead>
                                   <tr>
                                     <th> Name</th>
                                     <th> DOB</th>
@@ -26,6 +26,8 @@
                                     <th> Gender</th>
                                     <th> Action</th>
                                   </tr>
+                                </thead>
+                                <tbody>
                                   {% for patient in patients %}
                                       <tr>
                                         <td>{{ patient.name }}</td>

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'bootstrap_datepicker_plus',
     'bootstrap4',
     'bootstrap_modal_forms',
+    'widget_tweaks',
 
 
     'sendmailapp.apps.SendmailappConfig',
