@@ -24,20 +24,20 @@
                     <a class="btn btn-primary" href="{% url 'export' %}"><span class="icon_cloud-upload_alt"></span>Download</a>
               </div>
                 <br>
-                <br>
+              <br>
             <section class="panel">
                 <div class="panel-body">
                 <div class="form">
                   <form class="form-validate form-horizontal "  method="get" action="">
                         {% csrf_token %}
-                      <div class="well">
+
                         <div class="row">
                             <div class="form-group col-sm-5 col-md-2">
-                              {{ filter.form.groups.label_tag }}
+
                               {% render_field filter.form.groups class="form-control" %}
                             </div>
                         </div>
-                      </div>
+
                       <button class="btn btn-primary btn-sm" type="submit">Filter</button>
                   </form>
                 </div>

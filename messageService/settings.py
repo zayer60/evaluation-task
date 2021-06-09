@@ -152,7 +152,7 @@ STATICFILES_FINDERS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+SENDGRID_API_KEY = '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'
 DEFAULT_FROM_EMAIL = 'abizawali3@gmail.com'
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 

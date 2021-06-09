@@ -134,7 +134,8 @@ def simple_upload(request):
         new_patients = request.FILES['myfile']
 
         imported_data = dataset.load(new_patients.read(), format='xlsx')
-        # print(imported_data)
+        #print(imported_data)
+
         for data in imported_data:
             pat,created = Patient.objects.get_or_create(pk=data[0])
             pat.groups.all().delete()
@@ -150,7 +151,7 @@ def simple_upload(request):
                 print(value)
                 value.save()
 
-            '''
+        '''
             value = PatientGroup(
                 data[0],
                 data[1],
